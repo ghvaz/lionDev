@@ -1,0 +1,33 @@
+mkdir EstacaoEspacial
+cd EstacaoEspacial
+mkdir Habitacao Laboratorio Hangar
+cd Habitacao
+mkdir quarto1 quarto2 quarto3
+cd ..
+cd laboratorio
+mkdir Pesquisa1 Pesquisa2
+cd ..
+cd Hangar
+mkdir Espaconave1 Espaconave2 Espaconave3
+cd ..
+rm -r Hangar 
+touch BoasVindas.txt
+echo 'Bem-Vindos à Estação Espacial!' > BoasVindas.txt
+cp BoasVindas.txt Laboratorio/
+echo 'Este é o laboratório!' > BoasVindas.txt
+
+
+
+
+
+
+EXECUÇÃO DO TRABALHO PASSO A PASSO 
+Primeiro: comando utilizado é o " mkdir EstacaoEspacial " para criar a estação, em seguida entro no diretorio com o comando " cd EstacaoEspacial ";
+Segundo: crio as 3 seção com " mkdir Habitacao Laboratorio Hangar ";
+Terceiro: entro na pasta habitacao com o comando " cd Habitacao " e crio as habitações com o comando " mkdir quarto1 quarto2 quarto3", após sai da pasta usando comando " cd .. ";  
+Quarto: entro na pasta Laboratorio com o comando " cd Laboratorio ", e crio os ambientes de pesquisa com o comando " mkdir Pesquisa1 Pesquisa2" e retorno a estação espacial com o comando " cd .. ";
+Quinto: entro no diretorio Hangar com " cd Hangar " e crio os espaços para as espaconaves com " mkdir Espaconave1 Espaconave2 Espaconave3 " e retorno a estação com " cd .. ";
+Sexto: removo o hangar com o comando " rm -r Hangar ";
+Setimo: para criar o arquivo txt usasse o comando " touch BoasVindas.txt ", e para adicionar o texto foi usado " echo 'Bem-Vindos à Estação Espacial!' ";
+Oitavo: para realizar a copia do arquivo BoasVindas.txt no laboratorio foi usado o comando " cp BoasVindas.txt Laboratorio/ "
+Nono: para encremendar o texto primeiramente entramos na pasta Laboratorio com " cd Laboratorio " e em seguida digito " echo 'Este é o laboratório!' > BoasVindas.txt
