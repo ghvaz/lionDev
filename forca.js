@@ -1,5 +1,5 @@
 let palavra = []
-let tentativa = []
+let tentativa = [], letrasErradas = []
 let tem = false
 let vidas = 6
 let temEspaco = 0
@@ -49,7 +49,7 @@ process.stdin.once('data', function(data){
 
             // caso a letra esteja na palavra para enviar uma mensagem para o usuario
             if(tem){
-                console.log("Correto, a letra existe")
+                console.log("\x1b[32mCorreto, a letra existe\x1b[0m")
                 for (let i = 0; i < tentativa.length; i++) {
                     process.stdout.write(tentativa[i])                    
                 }
@@ -63,10 +63,17 @@ process.stdin.once('data', function(data){
         }
 
         // caso o usuario não  tenha acertado a letra
-        if(!tem){
-            console.log("A letra não esta na palavra")
-            vidas--
-            console.log("Você perdeu uma vida")
+        if(!tem && letra.length < 2){
+            console.clear();
+
+            if(letrasErradas.includes(letra)){
+                console.log("\x1b[33mLetra já tentada\x1b[0m");
+            }else{
+                letrasErradas.push(letra)
+                console.log("A letra não esta na palavra")
+                vidas--
+                console.log("Você perdeu uma vida")
+            }
 
             // caso o usuario perca
             if(vidas == 0 ){
@@ -76,7 +83,11 @@ process.stdin.once('data', function(data){
             }else{
                 // caso o usuario ainda tenha vidas
                 console.log("Você ainda tem "+vidas+" vidas")
-                
+
+                // mostra as letras já tentadas
+                console.log(`\x1b[31mLetras erroniamentes tentadas: \x1b[0m`);
+                console.log(`\x1b[31m${letrasErradas}\x1b[0m`)
+
                 // imprimir a palavra novamente
                 for (let i = 0; i < tentativa.length; i++) {
                     process.stdout.write(tentativa[i])                    
@@ -84,6 +95,9 @@ process.stdin.once('data', function(data){
                 // quebra de linha
                 console.log('\n')
             }
+        }else if(letra.length > 1 ){
+            console.clear();
+            console.log('Somente uma letra ');
         }
 
         // para palavras compostas 
@@ -105,7 +119,7 @@ process.stdin.once('data', function(data){
                 tmpF = ((tmpF - tmpI)/1000)
                 
 
-                console.log("Parabens")
+                console.log(`\x1b[32m-----------PARABENS----------\x1b[0m`)
                 console.log('vc passou ' + tmpF.toFixed(2) + ' segundos para acertar')
             process.exit()
             }
