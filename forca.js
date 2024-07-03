@@ -119,7 +119,7 @@ process.stdin.once('data', function(data){
                 tmpF = ((tmpF - tmpI)/1000)
                 
 
-                console.log(`\x1b[32m-----------PARABENS----------\x1b[0m`)
+                console.log(`-----------PARABENS---------- `);
                 console.log('vc passou ' + tmpF.toFixed(2) + ' segundos para acertar')
             process.exit()
             }

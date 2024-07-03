@@ -1,14 +1,19 @@
 const { compileFunction } = require("vm")
+const prompt = require("prompt-sync")({sigint: true})
+function log(a){
+    process.stdout.write(a)
+}
 
 
 console.clear()
 
 let campo = []
 let campoResposta = [] 
+let arredores = []
 
 
-let tamanho = 8
-let qdtBomb = tamanho*0.25
+let tamanho = 5
+let qdtBomb = 2 //Math.round(tamanho*0.25)
 
 console.log("Há "+qdtBomb+' bombas no campo');
 
@@ -44,13 +49,13 @@ for (let i = 0; i < (tamanho+1); i++) {
             if(i > 9){
                 campoResposta[i][j] = i+""
             }else{
-                campoResposta[i][j] = i+ ' '
+                campoResposta[i][j] = i+' '
             }
         }else if( i == 0 ){
             if(j > 9 ){
                 campoResposta[i][j] = ''+j+' '
             }else{
-                campoResposta[i][j] = ' '+j+ " "
+                campoResposta[i][j] = ' '+j+" "
             }
         }else{
             campoResposta[i][j] =  ' 0 '
@@ -61,48 +66,24 @@ for (let i = 0; i < (tamanho+1); i++) {
 
 // colocar as bombas arrumar aredores no CAMPO RESṔOSTA
 for(let i = 1; i <= qdtBomb; i++){
+    aredor = []
     let localA = Math.floor(((Math.random()* tamanho)+ 1))
     let localC = Math.floor(((Math.random()* tamanho)+ 1))
     campoResposta[localA][localC] = ' Z '
-    
     for (let j = (localA-1); j <= (localA+1); j++) {   
         for (let k = (localC-1); k <= (localC+1); k++) {
-            switch (campoResposta[j][k]) {
-                case ' 0 ':
-                    campoResposta[j][k] =  ' 1 '
-                    break;
-                case ' 1 ':
-                    campoResposta[j][k] =  ' 2 '
-                    break;
-                case ' 2 ':
-                    campoResposta[j][k] =  ' 3 '
-                    break;
-                case ' 3 ':
-                    campoResposta[j][k] =  ' 4 '
-                    break;
-                case ' 4 ':
-                    campoResposta[j][k] =  ' 5 '
-                    break;
-                case ' 5 ':
-                    campoResposta[j][k] =  ' 6 '
-                    break;
-                case ' 6 ':
-                    campoResposta[j][k] =  ' 7 '
-                    break;
-                case ' 7 ':
-                    campoResposta[j][k] =  ' 8 '
-                    break;
-                
-                default:
-
-                    break;
+            if( !(j == localA && k == localC) ){
+                aredor.push(`${j}e${k}`)
             }
-                
         }
-    }        
+    }
+    arredores.push(aredor)
 }
+console.log(arredores);
 
-
+// for (let i = 0; i < qdtBomb; i++) {
+    
+// }
 
 
 
@@ -113,8 +94,8 @@ for(let i = 0; i<(tamanho+1); i++){
         process.stdout.write(campoResposta[i][j])
     }
     process.stdout.write('\n')
-
 }
+console.log('\n');
 
 //DESENHAR O CAMPO 
 // {
